@@ -289,6 +289,6 @@ func (dht *DHT) Run() {
 }
 
 // BlackList return DHT’s blackList
-func (dht *DHT) BlackList() *blackList {
-	return dht.blackList
+func (dht *DHT) BlackList() *map[interface{}]interface{} {
+	return &dht.blackList.list.data
 }
