@@ -383,3 +383,14 @@ func (wire *Wire) Run() {
 		}(r)
 	}
 }
+
+// Status return Wire's status
+func (w *Wire) Status() *Status {
+	return &Status{
+		BlackList: w.blackList,
+		Queue:     w.queue,
+		Requests:  len(w.requests),
+		Responses: len(w.responses),
+		Tokens:    len(w.workerTokens),
+	}
+}
