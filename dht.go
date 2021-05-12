@@ -296,6 +296,9 @@ func (dht *DHT) BlackList() *map[string]interface{} {
 		if ok {
 			item, ok := v.(*blockedItem)
 			if ok {
+				if item.port == -1 {
+					continue
+				}
 				mc := make(map[string]interface{})
 				mc["ip"] = item.ip
 				mc["port"] = item.port
