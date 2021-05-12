@@ -289,6 +289,20 @@ func (dht *DHT) Run() {
 }
 
 // BlackList return DHT’s blackList
-func (dht *DHT) BlackList() *map[interface{}]interface{} {
-	return &dht.blackList.list.data
+func (dht *DHT) BlackList() *map[string]interface{} {
+	m := make(map[string]interface{})
+	for k, v := range dht.blackList.list.data {
+		ks, ok := k.(string)
+		if ok {
+			item, ok := v.(*blockedItem)
+			if ok {
+				mc := make(map[string]interface{})
+				mc["ip"] = item.ip
+				mc["port"] = item.port
+				mc["createTime"] = item.createTime
+				m[ks] = mc
+			}
+		}
+	}
+	return &m
 }
