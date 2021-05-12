@@ -287,3 +287,8 @@ func (dht *DHT) Run() {
 		}
 	}
 }
+
+// BlackList return DHT’s blackList
+func (dht *DHT) BlackList() *blackList {
+	return dht.blackList
+}
