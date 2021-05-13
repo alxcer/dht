@@ -577,7 +577,7 @@ func handleRequest(dht *DHT, addr *net.UDPAddr,
 		}
 
 		if dht.OnAnnouncePeer != nil {
-			dht.OnAnnouncePeer(infoHash, addr.IP.String(), port)
+			dht.OnAnnouncePeer(infoHash, addr.IP.String(), port, dht.dhtId)
 		}
 	default:
 		//		send(dht, addr, makeError(t, protocolError, "invalid q"))

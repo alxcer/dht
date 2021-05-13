@@ -150,6 +150,7 @@ type Request struct {
 	InfoHash []byte
 	IP       string
 	Port     int
+	DhtId    uint8
 }
 
 // Response contains the request context and the metadata info.
@@ -182,8 +183,8 @@ func NewWire(blackListSize, requestQueueSize, workerQueueSize int) *Wire {
 }
 
 // Request pushes the request to the queue.
-func (wire *Wire) Request(infoHash []byte, ip string, port int) {
-	wire.requests <- Request{InfoHash: infoHash, IP: ip, Port: port}
+func (wire *Wire) Request(infoHash []byte, ip string, port int, dhtId uint8) {
+	wire.requests <- Request{InfoHash: infoHash, IP: ip, Port: port, DhtId: dhtId}
 }
 
 // Response returns a chan of Response.

@@ -68,8 +68,8 @@ func main() {
 	go w.Run()
 
 	config := dht.NewCrawlConfig()
-	config.OnAnnouncePeer = func(infoHash, ip string, port int) {
-		w.Request([]byte(infoHash), ip, port)
+	config.OnAnnouncePeer = func(infoHash, ip string, port int, dhtId uint8) {
+		w.Request([]byte(infoHash), ip, port, dhtId)
 	}
 	d := dht.New(config)
 

@@ -55,7 +55,7 @@ type Config struct {
 	// callback when receive get_peers response
 	OnGetPeersResponse func(string, *Peer)
 	// callback when got announce_peer request
-	OnAnnouncePeer func(string, string, int)
+	OnAnnouncePeer func(string, string, int, uint8)
 	// blcoked ips
 	BlockedIPs []string
 	// blacklist size
@@ -126,6 +126,7 @@ type DHT struct {
 	Ready              bool
 	packets            chan packet
 	workerTokens       chan struct{}
+	dhtId              uint8
 }
 
 // New returns a DHT pointer. If config is nil, then config will be set to
