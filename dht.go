@@ -310,3 +310,7 @@ func (dht *DHT) BlackList() *map[string]interface{} {
 	}
 	return &m
 }
+
+func (dht *DHT) SetDhiId(id uint8) {
+	dht.dhtId = id
+}
