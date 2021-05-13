@@ -216,12 +216,12 @@ func (dht *DHT) listen() {
 	go func() {
 		buff := make([]byte, 8192)
 		for {
-			n, raddr, err := dht.conn.ReadFromUDP(buff)
+			n, rAddr, err := dht.conn.ReadFromUDP(buff)
 			if err != nil {
 				continue
 			}
 
-			dht.packets <- packet{buff[:n], raddr}
+			dht.packets <- packet{buff[:n], rAddr}
 		}
 	}()
 }
