@@ -304,10 +304,15 @@ func (tm *transactionManager) query(q *query, try int) {
 func (tm *transactionManager) run() {
 	var q *query
 
+	group := make(chan bool, 6)
 	for {
 		select {
 		case q = <-tm.queryChan:
-			go tm.query(q, tm.dht.Try)
+			group <- true
+			go func(g *chan bool) {
+				tm.query(q, tm.dht.Try)
+				<-(*g)
+			}(&group)
 		}
 	}
 }
